@@ -15,7 +15,7 @@ router.get('/tasks/:id',(req,res)=>{
 res.status(200).send()
 })
 
-router.patch('/tasks/:id',(req,res)=>{
+router.patch('/tasks/:id', async (req,res)=>{
     res.send()
 })
 

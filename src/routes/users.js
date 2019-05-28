@@ -39,7 +39,29 @@ router.get('/users/:id', async (req, res) => {
 })
 
 router.patch('/users/:id', (req, res) => {
-    res.send()
+    const updates = Object.keys(req.body)
+    const allowUpdate = ["name", "email", "password", "age"]
+    const isValidOperation = updates.every((updates) => {
+        allowUpdate.includes(update)
+        if (!isValidOperation) {
+            return res.status(400).send({
+                Error: 'Objects cannot be updated'
+            })
+        }
+        try {
+            const user = await User.findByIdAndUpdate(req.params.id, req.body, {
+                new: true,
+                runValidators: true
+            })
+            if (!user) {
+                res.status(404).send()
+            }
+            res.send(user)
+
+        } catch (error) {
+            res.send.status(500).send(error)
+        }
+    })
 })
 
 router.delete('/users/:id', (req, res) => {
