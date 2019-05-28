@@ -8,6 +8,7 @@ const app = express()
 
 app.use(express.json())
 app.use(userRoute)
+app.use(taskRoute)
 
 const port = process.env.PORT || 3000
 
